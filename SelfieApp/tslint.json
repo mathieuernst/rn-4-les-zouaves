@@ -1,0 +1,289 @@
+{
+  "extends": ["tslint:all", "tslint-react", "tslint-config-prettier"],
+  "rulesDirectory": [],
+  "linterOptions": {
+    "exclude": ["node_modules"]
+  },
+  "defaultSeverity": "error",
+  "jsRules": true,
+  "rules": {
+    // NOTE: Needs discussion or investigation -@thery at 3/8/2019, 5:45:34 PM
+    // All the rules are enabled by default with tslint:all
+    // Please explain to the team if you think a rule should be disabled / modified
+    // Original file for tslint:all:
+    // SEE: https://github.com/palantir/tslint/blob/master/src/configs/all.ts
+    // Last version used: tslint v5.14.0:
+    // SEE: https://github.com/palantir/tslint/releases
+    // "adjacent-overload-signatures"
+    // "ban-types"
+    // NOTE: ban-ts-ignore: should not be abused
+    "ban-ts-ignore": false,
+    // "member-access"
+    // NOTE: member-ordering: Removed alphabetize
+    "member-ordering": { "options": { "order": "statics-first" } },
+    // NOTE: no-any:
+    // don't use any expect for specific dynamic functions
+    // no-unsafe-any help too.
+    "no-any": false,
+    // "no-empty-interface"
+    // "no-import-side-effect"
+    //// Technically this is not the strictest setting, but don't want to conflict with "typedef"
+    // NOTE: no-inferrable-types: allow for function params and class properties
+    "no-inferrable-types": [true, "ignore-params", "ignore-properties"],
+    // "no-internal-module"
+    // NOTE: no-magic-numbers: allowing the first numbers
+    // this rule is kind of broken
+    // SEE: https://github.com/palantir/tslint/issues/1883
+    // "no-magic-numbers": [true, { "allowed-numbers": [-1, 0, 1, 2, 3] }],
+    "no-magic-numbers": false,
+    // "no-namespace"
+    // "no-non-null-assertion"
+    // "no-reference"
+    // "no-restricted-globals"
+    // "no-this-assignment"
+    // "no-var-requires"
+    // NOTE: only-arrow-functions: allow-declarations for overloaded functions
+    "only-arrow-functions": [true, "allow-declarations"],
+    // "prefer-for-of"
+    // "prefer-readonly"
+    // "promise-function-async"
+    // NOTE: typedef:
+    // typedef.variable-declaration: functions' return type are enough
+    // typedef.arrow-parameter: member-variable-declaration are enough
+    "typedef": {
+      "options": [
+        "call-signature",
+        "arrow-call-signature",
+        "parameter",
+        "property-declaration",
+        "member-variable-declaration"
+      ]
+    },
+    // "typedef-whitespace"
+    // "unified-signatures"
+    // "await-promise"
+    //// "ban": no sensible default
+    // "ban-comma-operator"
+    // NOTE: curly: allow one liners if one the same line
+    "curly": [true, "ignore-same-line"],
+    // "forin"
+    // "function-constructor"
+    //// "import-blacklist": no sensible default
+    // "label-position"
+    // "no-arg"
+    // "no-bitwise"
+    // "no-conditional-assignment"
+    // NOTE: no-console: allow warn, error and group (are disabled in production)
+    "no-console": {
+      "severity": "warning",
+      "options": ["debug", "info", "log", "time", "timeEnd", "trace", "table"]
+    },
+    // "no-construct"
+    // "no-debugger"
+    // "no-duplicate-super"
+    // "no-duplicate-switch-case"
+    // "no-duplicate-variable"
+    // "no-dynamic-delete"
+    // "no-empty"
+    // "no-eval"
+    // "no-floating-promises"
+    // "no-for-in-array"
+    // NOTE: Needs discussion or investigation -@thery at 3/18/2019, 1:13:07 PM
+    // no-implicit-dependencies disabled for now:
+    // nested package.json (for compiler) break this check
+    // SEE: https://github.com/palantir/tslint/issues/3980
+    // // "no-implicit-dependencies": [true, ["src", "helper", "data", "components"]],
+    "no-implicit-dependencies": false,
+    // NOTE: no-inferred-empty-object-type: not needed, conflict with redux action creators
+    "no-inferred-empty-object-type": false,
+    // "no-invalid-template-strings"
+    //// "no-invalid-this": Won't this be deprecated?
+    // "no-misused-new"
+    // TODO: Tasks pending completion -@thery at 3/10/2019, 4:01:02 PM
+    // null has to be removed from codebase if used outside of component's rendering
+    "no-null-keyword": false,
+    // "no-object-literal-type-assertion"
+    // "no-return-await"
+    // NOTE: no-shadowed-variable: underscore allowed (for unused parameters)
+    "no-shadowed-variable": [
+      true,
+      {
+        "class": true,
+        "enum": true,
+        "function": true,
+        "import": true,
+        "interface": true,
+        "namespace": true,
+        "typeAlias": true,
+        "typeParameter": true,
+        "temporalDeadZone": true,
+        "underscore": false
+      }
+    ],
+    // "no-string-literal"
+    // "no-string-throw"
+    // "no-sparse-arrays"
+    // NOTE: no-submodule-imports: added some exceptions
+    "no-submodule-imports": [
+      true,
+      // paths used in tsconfig paths
+      "@src",
+      "@helper",
+      "@data",
+      "@components",
+      "@controllers",
+      "@containers",
+      "@api",
+      "@hoc",
+      "@hooks",
+      "@saga",
+      "@store",
+      "@custom-types",
+      "@router",
+      // react-native-firebase use lot of submodules
+      "react-native-firebase"
+    ],
+    // "no-unbound-method"
+    // "no-unnecessary-class"
+    // "no-unsafe-any"
+    // "no-unsafe-finally"
+    // "no-unused-expression"
+    //// "no-unused-variable" - deprecated
+    // NOTE: no-use-before-declare: prefer to use types before functions
+    // NOTE: no-use-before-declare: deprecated -@thery at 7/12/2019, 2:59:39 PM
+    // "no-use-before-declare": true,
+    // "no-var-keyword"
+    // NOTE: no-void-expression: accept arrow function return in one liners
+    "no-void-expression": [true, "ignore-arrow-function-shorthand"],
+    // "prefer-conditional-expression"
+    // "radix"
+    // "restrict-plus-operands"
+    // "static-this"
+    "strict-boolean-expressions": [
+      true,
+      "allow-null-union",
+      "allow-undefined-union",
+      "allow-string",
+      "allow-enum",
+      "allow-mix",
+      "ignore-rhs"
+    ],
+    "strict-comparisons": [
+      true,
+      {
+        "allow-object-equal-comparison": true,
+        "allow-string-order-comparison": false
+      }
+    ],
+    // "strict-type-predicates"
+    // "switch-default"
+    // "triple-equals"
+    // "unnecessary-constructor"
+    // "use-default-type-parameter"
+    // "use-isnan"
+    // NOTE: can become ugly for if else if else if .. else
+    "unnecessary-else": false,
+    // "cyclomatic-complexity"
+    // "eofline"
+    // "indent"
+    // "linebreak-style"
+    // "max-classes-per-file"
+    // "max-file-line-count"
+    // "max-line-length"
+    // NOTE: no-default-export: match-default-export-name rule is already used
+    "no-default-export": false,
+    // NOTE: no-default-import: match-default-export-name rule is already used
+    "no-default-import": false,
+    // "no-duplicate-imports"
+    // "no-irregular-whitespace"
+    // "no-mergeable-namespace"
+    // "no-parameter-reassignment"
+    // "no-require-imports"
+    // "no-trailing-whitespace"
+    // NOTE: object-literal-sort-keys: not that usefull
+    "object-literal-sort-keys": false,
+    // "prefer-const"
+    // "trailing-comma"
+    // "align"
+    // "array-type"
+    // "arrow-parens"
+    // "arrow-return-shorthand"
+    // "binary-expression-operand-order"
+    // NOTE: callable-types: if needed, special type Callable in src/types
+    "callable-types": true,
+    // "class-name"
+    // NOTE: comment-format: no uppercase check
+    "comment-format": { "options": ["check-space"] },
+    // "comment-type"
+    // NOTE: completed-docs: self documenting code is better
+    // TODO tslint completed-docs
+    "completed-docs": {
+      "options": {
+        "classes": {
+          "visibilities": "exported"
+        }
+      }
+    },
+    // "deprecation"
+    // "encoding"
+    // NOTE: file-name-casing: don't work for interfaces (ISomething) ...
+    "file-name-casing": false, // "pascal-case"
+    // "import-spacing"
+    // "increment-decrement"
+    // "interface-name"
+    // NOTE: interface-over-type-literal:
+    // types are used locally ; interfaces are used accross components
+    "interface-over-type-literal": false,
+    // "jsdoc-format"
+    // "match-default-export-name"
+    // "new-parens"
+    // NOTE: newline-before-return: no.
+    "newline-before-return": false,
+    // "newline-per-chained-call"
+    // "no-angle-bracket-type-assertion"
+    // "no-boolean-literal-compare"
+    // "no-consecutive-blank-lines"
+    // "no-parameter-properties"
+    // "no-redundant-jsdoc"
+    // "no-reference-import"
+    // "no-unnecessary-callback-wrapper"
+    // "no-unnecessary-initializer"
+    // "no-unnecessary-qualifier"
+    // "no-unnecessary-type-assertion"
+    // "number-literal-format"
+    // "object-literal-key-quotes"
+    // "object-literal-shorthand"
+    // "one-line",
+    // "one-variable-per-declaration"
+    // "ordered-imports",
+    // NOTE: prefer-function-over-method: allow public and protected method
+    // - prevent public render method warning
+    "prefer-function-over-method": [true, "allow-public", "allow-protected"],
+    // "prefer-method-signature"
+    // "prefer-object-spread"
+    // "prefer-switch"
+    // "prefer-template"
+    // "prefer-while"
+    // "quotemark",
+    // "return-undefined"
+    // "semicolon"
+    // "space-before-function-paren",
+    // "space-within-parens"
+    // "switch-final-break"
+    // "type-literal-delimiter"
+    // "unnecessary-bind"
+    // NOTE: variable-name:
+    // - added allow-leading-underscore for private handlers
+    // - added allow-pascal-case for custom components (HOC)
+    "variable-name": {
+      "options": [
+        "ban-keywords",
+        "check-format",
+        "require-const-for-all-caps",
+        "allow-leading-underscore",
+        "allow-pascal-case"
+      ]
+    }
+    // "whitespace"
+  }
+}
