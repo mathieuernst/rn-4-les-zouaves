@@ -3,7 +3,7 @@ import React, { PureComponent } from 'react';
 
 type Props = {};
 
-export default class LoginComponent extends PureComponent<Props> {
+export default class RegisterComponent extends PureComponent<Props> {
   public render(): React.ReactNode {
     return (
       <View>
