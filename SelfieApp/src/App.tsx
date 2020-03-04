@@ -8,11 +8,13 @@
  * @format
  */
 
+import 'react-native-gesture-handler';
 import React, { Component } from 'react';
 import { configureStore } from './store';
 
 import { Provider } from 'react-redux';
-import { Text, View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import Router from './router';
 
 type Props = {};
 
@@ -31,11 +33,11 @@ export default class App extends Component<Props, State> {
   public render(): React.ReactNode {
     const { store } = this.state;
     return (
-      <Provider store={store}>
-        <View>
-          <Text>{'test'}</Text>
-        </View>
-      </Provider>
+      <NavigationContainer>
+        <Provider store={store}>
+          <Router />
+        </Provider>
+      </NavigationContainer>
     );
   }
 }

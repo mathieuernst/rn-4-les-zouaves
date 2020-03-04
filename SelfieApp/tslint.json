@@ -92,7 +92,7 @@
     // no-implicit-dependencies disabled for now:
     // nested package.json (for compiler) break this check
     // SEE: https://github.com/palantir/tslint/issues/3980
-    // // "no-implicit-dependencies": [true, ["src", "helper", "data", "components"]],
+    // // "no-implicit-dependencies": [true, ["src", "helper", "data", "containers"]],
     "no-implicit-dependencies": false,
     // NOTE: no-inferred-empty-object-type: not needed, conflict with redux action creators
     "no-inferred-empty-object-type": false,
@@ -232,7 +232,7 @@
     // "increment-decrement"
     // "interface-name"
     // NOTE: interface-over-type-literal:
-    // types are used locally ; interfaces are used accross components
+    // types are used locally ; interfaces are used accross containers
     "interface-over-type-literal": false,
     // "jsdoc-format"
     // "match-default-export-name"
@@ -274,7 +274,7 @@
     // "unnecessary-bind"
     // NOTE: variable-name:
     // - added allow-leading-underscore for private handlers
-    // - added allow-pascal-case for custom components (HOC)
+    // - added allow-pascal-case for custom containers (HOC)
     "variable-name": {
       "options": [
         "ban-keywords",

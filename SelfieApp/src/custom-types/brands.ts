@@ -4,6 +4,7 @@ import { UUID } from '@helper/uuid';
 /**
  * Requests Uuid
  */
+
 export type RequestUUID = UUID;
 
 export type JwtToken = Brand<string, 'JwtToken'>;
